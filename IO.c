@@ -46,6 +46,7 @@ void IO_HeartBeat(void) {
 void IO_Touch(void) {
 	uint8_t state;
 	while(1){
+		IO_HeartBeat();
 		state = GPIO_PORTF_DATA_R;
 		state &= 0x10;
 		if(GPIO_PORTF_DATA_R == 0){
