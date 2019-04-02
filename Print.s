@@ -32,17 +32,19 @@ LCD_OutDec
 	
 	BLO baseCase
 	UDIV R1,R0,R3 ;R1 contains the MSV
-	MLS R2,R1,R3,R0 ;R2 now contains remainder
+	MLS R2,R1,R3,R0 ;R2 now contains remainder. this instruction does r0-r1*r3
 	MOV R0,R1 ;R0 contains new value
 	STR R2,[SP,#rmd] ;put remainder on stack
 	BL LCD_OutDec ;call itself again
 	;***return path***
+	
 	LDR R0,[SP,#rmd]
 	
 	
 baseCase ADD R0,#0x30
 	BL ST7735_OutChar
 
+	;****restore stack****
 	ADD SP,#8
 	POP {R0,LR}
 

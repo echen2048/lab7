@@ -118,7 +118,7 @@ int main(void){
   IO_Touch();
   ST7735_FillScreen(0);       // set screen to black
   for(i=0;i<SIZE;i++){
-    
+    IO_HeartBeat();
     ST7735_SetCursor(0,i);
     LCD_OutDec(TestData[i]);
     ST7735_SetCursor(11,i);
